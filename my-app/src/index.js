@@ -49,36 +49,67 @@ import ClickCounter from "./ClickCounter.js";
 // setInterval(tick, 1000);
 
 //使用类方法构造
-class Clock extends React.Component {
+// class Clock extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = { data: new Date() };
+//     }
+//     componentDidMount() {
+//         this.timerID = setInterval(
+//             () => this.tick(),
+//             1000
+//         );
+//     }
+//     componentWillUnmount() {
+//         clearInterval(this.timerID);
+//     }
+//     tick() {
+//         this.setState({
+//             data: new Date()
+//         });
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <h1>Hello, world!</h1>
+//                 <h2>It is { this.state.data.toLocaleTimeString() }.</h2>
+//             </div>
+//         );
+//     }
+// }
+
+// ReactDOM.render(
+//     <Clock />,
+//     document.getElementById('root')
+// );
+
+class CustomTextInput extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { data: new Date() };
+        this.focus = this.focus.bind(this);
     }
-    componentDidMount() {
-        this.timerID = setInterval(
-            () => this.tick(),
-            1000
-        );
+
+    focus() {
+        this.textInput.focus();
     }
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-    }
-    tick() {
-        this.setState({
-            data: new Date()
-        });
-    }
+
     render() {
         return (
             <div>
-                <h1>Hello, world!</h1>
-                <h2>It is { this.state.data.toLocaleTimeString() }.</h2>
+                <input
+                    type = 'text'
+                    ref = { (input) => { this.textInput = input; } } />
+
+                <input
+                    type = 'button'
+                    value = 'Focus the text input'
+                    onClick = { this.focus } />
             </div>
         );
     }
 }
 
 ReactDOM.render(
-    <Clock />,
+    <CustomTextInput />,
     document.getElementById('root')
 );
