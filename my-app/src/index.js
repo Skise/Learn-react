@@ -113,3 +113,40 @@ ReactDOM.render(
     <CustomTextInput />,
     document.getElementById('root')
 );
+
+//Fragments
+/* render() {
+    return (
+        <>
+        <ChildA />
+        <ChildB />
+        <ChildC />
+        </>
+    )
+} */
+
+class Colums extends React.Component {
+    render() {
+        return (
+            <>
+                <td>Hello</td>
+                <td>World</td>
+            </>
+        );
+    }
+}
+
+//带key值使用
+function Glossary(props) {
+    return (
+        <dl>
+            { props.items.map(item => (
+                //没有key, 将会触发一个key警告
+                <React.Fragment key = { item.id }>
+                    <dt>{ item.term }</dt>
+                    <dd>{ item.descirption }</dd>
+                </React.Fragment>
+            )) }
+        </dl>
+    );
+}
