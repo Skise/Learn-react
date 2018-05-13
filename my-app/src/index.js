@@ -1,152 +1,152 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import './index.css';
-import ClickCounter from "./ClickCounter.js";
 
-// ReactDOM.render(
-//     <ClickCounter />,
-//     document.getElementById('root')
-// );
-
-// function Welcome(props) {
-//     return <h1>Hello, { props.name }</h1>
-// } 
-
-// const element = <Welcome name="Sara" />;
-// ReactDOM.render(
-//     element,
-//     document.getElementById('root')
-// );
-
-// function App() {
-//     return (
-//         <div>
-//             <Welcome name="Sara" />
-//             <Welcome name="Cahal" />
-//             <Welcome name="Edite" />
-//         </div>
-//     );
-// }
-
-// ReactDOM.render(
-//     <App />,
-//     document.getElementById('root')
-// );
-
-// function tick() {
-//     const element = (
-//         <div>
-//             <h1>Hello, world!</h1>
-//             <h2>It is { new Date().toLocaleTimeString() }.</h2>
-//         </div>
-//     );
-//     ReactDOM.render(
-//         element,
-//         document.getElementById('root')
-//     );
-// }
-
-// setInterval(tick, 1000);
-
-//使用类方法构造
-// class Clock extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = { data: new Date() };
-//     }
-//     componentDidMount() {
-//         this.timerID = setInterval(
-//             () => this.tick(),
-//             1000
-//         );
-//     }
-//     componentWillUnmount() {
-//         clearInterval(this.timerID);
-//     }
-//     tick() {
-//         this.setState({
-//             data: new Date()
-//         });
-//     }
+// class Square extends React.Component {
 //     render() {
 //         return (
-//             <div>
-//                 <h1>Hello, world!</h1>
-//                 <h2>It is { this.state.data.toLocaleTimeString() }.</h2>
-//             </div>
+//             <button className="square" onClick={ () => this.props.onClick() }>
+//                 { this.props.value }
+//             </button>
 //         );
 //     }
 // }
+function Square(props) {
+    return (
+        <button className = 'square' onClick = { props.onClick }>
+        { props.value }
+        </button>
+    );
+}
 
-// ReactDOM.render(
-//     <Clock />,
-//     document.getElementById('root')
-// );
+class Board extends React.Component {
+    // constructor() {
+    //     super();
+    //     this.state = {
+    //         squares: Array(9).fill(null),
+    //         xIsNext: true,
+    //     };
+    // }
 
-class CustomTextInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.focus = this.focus.bind(this);
+    handleClick(i) {
+        const history = this.state.history;
+        const current = history[history.length - 1];
+        const squares = this.state.squares.slice();
+        if (calculateWinner(squares) || squares[i]) {
+            return;
+        }
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        this.setState({
+            history: history.concat([{
+                squares: squares
+            }]),
+            xIsNext: !this.state.xIsNext,
+        })
     }
 
-    focus() {
-        this.textInput.focus();
+    renderSquare(i) {
+        return (
+            <Square 
+                value={ this.props.squares[i] }
+                onClick={ () => this.props.onClick(i) }
+            />
+        );
     }
 
     render() {
+        const winner = calculateWinner(this.state.squares);
+        let status;
+        if (winner) {
+            status = 'Winner: ' + winner;
+        } else {
+            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
+
         return (
             <div>
-                <input
-                    type = 'text'
-                    ref = { (input) => { this.textInput = input; } } />
-
-                <input
-                    type = 'button'
-                    value = 'Focus the text input'
-                    onClick = { this.focus } />
+                <div className="board-row">
+                    {this.renderSquare(0)}
+                    {this.renderSquare(1)}
+                    {this.renderSquare(2)}
+                </div>
+                <div className="board-row">
+                    {this.renderSquare(3)}
+                    {this.renderSquare(4)}
+                    {this.renderSquare(5)}
+                </div>
+                <div className="board-row">
+                    {this.renderSquare(6)}
+                    {this.renderSquare(7)}
+                    {this.renderSquare(8)}
+                </div>
             </div>
         );
     }
 }
 
-ReactDOM.render(
-    <CustomTextInput />,
-    document.getElementById('root')
-);
+class Game extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            history: [{
+                squares: Array(9).fill(null),
+            }],
+            xIsNext: true,
+        }
+    }
 
-//Fragments
-/* render() {
-    return (
-        <>
-        <ChildA />
-        <ChildB />
-        <ChildC />
-        </>
-    )
-} */
-
-class Colums extends React.Component {
     render() {
+        const history = this.state.history;
+        const current = history[history.length - 1];
+        const winner = calculateWinner(current.squares);
+
+        let status;
+        if (winner) {
+            status = 'Winner: ' + winner;
+        } else {
+            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
+
         return (
-            <>
-                <td>Hello</td>
-                <td>World</td>
-            </>
+            <div className="game">
+                <div className="game-board">
+                    <Board 
+                        squares = { current.squares }
+                        onClick = { (i) => this.handleClick(i) }
+                    />
+                </div>
+                <div className="game-info">
+                    <div>{/* status */}</div>
+                    <ol>{/* TODO */}</ol>
+                </div>
+            </div>
         );
     }
 }
 
-//带key值使用
-function Glossary(props) {
-    return (
-        <dl>
-            { props.items.map(item => (
-                //没有key, 将会触发一个key警告
-                <React.Fragment key = { item.id }>
-                    <dt>{ item.term }</dt>
-                    <dd>{ item.descirption }</dd>
-                </React.Fragment>
-            )) }
-        </dl>
-    );
+function calculateWinner(squares) {
+    const lines = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+        const [a, b, c] = lines[i];
+        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c] ) {
+            return squares[a];
+        }
+    }
+    return null;
 }
+
+// ========================================
+
+ReactDOM.render(
+    <Game />,
+    document.getElementById('root')
+);
