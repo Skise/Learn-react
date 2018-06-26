@@ -5,5 +5,5 @@ import Header from './components/header/header.js';
 
 ReactDOM.render(
     <Header />,
-    document.body
-)
+    document.getElementById('root')
+);

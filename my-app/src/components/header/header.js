@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List } from '../list／list.js';
+import List from '../list/list.js';
 // import { render } from 'react-dom';
 
 export default class Header extends Component {

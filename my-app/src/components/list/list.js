@@ -7,14 +7,17 @@ class List extends Component {
 
     render() {
         var arr = this.props.navList;
+        const listItems = arr.map((item) => 
+            // console.log(item);
+            <li key={item} className='nav-list'>{item}</li>
+        );
+        // console.log(listItems);
         return (
             <ul>
-                arr.map((item) => {
-                    <li className='nav-li'>{ item }</li>
-                })
+                { listItems }
             </ul>
         );
     }
 }
 
-export default { List };
+export default List;
