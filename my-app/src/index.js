@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import './index.css';
 import Header from './components/header/header.js';
+// import { RouterMap } from './router';
 
-ReactDOM.render(
-    <Header />,
+render(
+    <div className='place'>
+        <Header />
+    </div>,
     document.getElementById('root')
 );

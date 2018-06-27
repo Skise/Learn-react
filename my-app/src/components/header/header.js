@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import List from '../list/list.js';
+import List from './list/list.js';
+import './header.css';
 // import { render } from 'react-dom';
 
 export default class Header extends Component {
@@ -10,11 +11,28 @@ export default class Header extends Component {
     }
 
     render() {
-        var navList = ['首页', '新闻', '美食', '我的'];
+        var navList = [
+            {
+                title: '首页',
+                path: '/app',
+            },
+            {
+                title: '美食',
+                path: '/food',              
+            },
+            {
+                title: '新闻',
+                path: '/news',
+            },
+            {
+                title: '我的',
+                path: '/home',
+            }
+        ];
         return (
-            <div className='headers'>
+            <div id='headers'>
                 <div className='logo'>实验产品</div>
-                <List navList={ navList } />
+                <List navList={ navList }/>
             </div>
         );
     }
