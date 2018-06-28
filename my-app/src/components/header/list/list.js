@@ -20,7 +20,7 @@ class List extends Component {
         // this.props.clicked = true;
         this.setState({
             clicked: key,
-            choose: (!!cos) ? '' : key,
+            choose: (key === cos) ? '' : key,
         })
     }
 

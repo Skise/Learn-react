@@ -25,20 +25,26 @@ ul {
 .idItem {
     color: #000000;
     height: 20px;
-    width: 120px;
+    width: 80px;
+    margin: 0 20px;
     display: block;
     padding: 10px 0;
+    border-bottom: 1px solid #c2c0c0;
 }
 .idItem:hover {
     font-size: 16px;
-    border: 1px solid #000000;
+    /* border: 1px solid #000000; */
+}
+.idItem:last-child {
+    border: none;
 }
 .little-list {
     position: absolute;
     background-color: #ffffff;
     /* overflow: auto; */
     padding: 0;
-    margin: 14px 0;
+    border-radius: 5px;
+    margin: 24px 0;
     /* clear: both; */
     /* z-index: 999; */
 }

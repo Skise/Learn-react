@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import List from './list/list.js';
+import { SearchBox } from './searchBox/searchBox.js';
 import './header.css';
 // import { render } from 'react-dom';
 
@@ -32,6 +33,7 @@ export default class Header extends Component {
         return (
             <div id='headers'>
                 <div className='logo'>实验产品</div>
+                <SearchBox />
                 <List navList={ navList }/>
             </div>
         );
