@@ -1,0 +1,15 @@
+.imgShow {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1300px;
+    height: 600px;
+    position: relative;
+}
+.imgShow > ul {
+    overflow: hidden;
+    position: relative;
+    left: 0;
+    transition: left 1s;
+    margin: 0;
+    padding: 0;
+}

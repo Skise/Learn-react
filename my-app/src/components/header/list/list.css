@@ -33,7 +33,6 @@ ul {
 }
 .idItem:hover {
     font-size: 16px;
-    /* border: 1px solid #000000; */
 }
 .idItem:last-child {
     border: none;
@@ -41,10 +40,7 @@ ul {
 .little-list {
     position: absolute;
     background-color: #ffffff;
-    /* overflow: auto; */
     padding: 0;
     border-radius: 5px;
-    margin: 24px 0;
-    /* clear: both; */
-    /* z-index: 999; */
+    margin: 14px 0;
 }

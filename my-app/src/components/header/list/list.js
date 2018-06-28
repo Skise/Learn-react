@@ -2,46 +2,71 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import './list.css';
 
+//导航条组件
 class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // clickState: false,
             clicked: 'app',
             choose: '',
         };
         this.handleClick = this.handleClick.bind(this);
+        this.handleMouseEnter = this.handleMouseEnter.bind(this);
+        this.handleMouseLeave = this.handleMouseLeave.bind(this);
     }
 
     handleClick(e) {
         let key = e.target.id;
-        let cos = this.state.choose;
-        console.log(!!cos, cos);
-        // this.props.clicked = true;
         this.setState({
             clicked: key,
-            choose: (key === cos) ? '' : key,
         })
+    }
+
+    handleMouseEnter(e) {
+        let key = e.target.id;
+        this.setState({
+            choose: key
+        });
+    }
+
+    handleMouseLeave() {
+        this.setState({
+            choose: ''
+        });
     }
 
     render() {
         let arr = this.props.navList;
-        // console.log(arr);
         const listItems = arr.map((item) => 
             {
-                // console.log('item-------', item);
                 const { title, path } = item;
                 const pathKey = path.slice(1);
-                // console.log('title    path -----', title, path.slice(1));
                 if (pathKey === this.state.clicked && pathKey === this.state.choose) {
                     return (
                         <li 
                             key={ pathKey }
                             id={ pathKey }
                             className={ (this.state.clicked === pathKey) ? 'listed' : 'nav-list' }
-                            onClick={this.handleClick}>
+                            onClick={this.handleClick}
+                            onMouseEnter={ this.handleMouseEnter }
+                            onMouseLeave={ this.handleMouseLeave }
+                            >
                                 {title}
                                 <SedList id={ pathKey } />
+                        </li>
+                    );
+                } else if (pathKey === this.state.choose) {
+                    return (
+                        <li 
+                            key={ pathKey }
+                            id={ pathKey }
+                            className={ (this.state.clicked === pathKey) ? 'listed' : 'nav-list' }
+                            onClick={this.handleClick}
+                            onMouseEnter={ this.handleMouseEnter }
+                            onMouseLeave={ this.handleMouseLeave }
+                            >
+                                {title}
+                                <SedList id={ pathKey }/>
                         </li>
                     );
                 } else {
@@ -50,14 +75,16 @@ class List extends Component {
                             key={ pathKey }
                             id={ pathKey }
                             className={ (this.state.clicked === pathKey) ? 'listed' : 'nav-list' }
-                            onClick={this.handleClick}>
+                            onClick={this.handleClick}
+                            onMouseEnter={ this.handleMouseEnter }
+                            onMouseLeave={ this.handleMouseLeave }
+                        >
                                 {title}
                         </li>
-                    );
+                    )
                 }
             }
         );
-        // console.log(listItems);
         return (
             <ul id='listUl'>
                 { listItems }
@@ -66,6 +93,7 @@ class List extends Component {
     }
 }
 
+//二级菜单组件
 class SedList extends Component {
     constructor(props) {
         super(props);
@@ -93,11 +121,8 @@ class SedList extends Component {
         ];
         let key = this.props.id;
         const lines = lists.map((item) => {
-            // console.log('item---', item.id);
-            // console.log('itemArr-------', item.item);
             if (item.id === key) {
                 console.log('id', this.props.id);
-                // console.log(id, itemArr);s
                 const sedLists = item.item.map((item) => 
                     {
                         console.log('list-----', item);

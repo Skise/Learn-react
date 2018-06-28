@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import List from './list/list.js';
 import { SearchBox } from './searchBox/searchBox.js';
 import './header.css';
-// import { render } from 'react-dom';
 
 export default class Header extends Component {
     constructor(props) {

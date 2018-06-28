@@ -1,0 +1,9 @@
+.imgItems {
+    display: inline-block;
+    /* height: auto; */
+}
+.imgItems > img {
+    display: block;
+    /* height: auto; */
+    width: 100%;
+}
