@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './list.css';
 
 //导航条组件
@@ -17,6 +17,7 @@ class List extends Component {
 
     handleClick(e) {
         let key = e.target.id;
+        console.log(key);
         this.setState({
             clicked: key,
         })
@@ -51,8 +52,10 @@ class List extends Component {
                             onMouseEnter={ this.handleMouseEnter }
                             onMouseLeave={ this.handleMouseLeave }
                             >
-                                {title}
-                                <SedList id={ pathKey } />
+                                {/* <Link to={ path }>{title}</Link> */}
+                                <a href={ path }>{ title }
+                                    <SedList id={ pathKey } />
+                                </a>
                         </li>
                     );
                 } else if (pathKey === this.state.choose) {
@@ -65,7 +68,8 @@ class List extends Component {
                             onMouseEnter={ this.handleMouseEnter }
                             onMouseLeave={ this.handleMouseLeave }
                             >
-                                {title}
+                                {/* <Link to={ path }>{title}</Link> */}
+                                <a href={ path }>{ title }</a>
                                 <SedList id={ pathKey }/>
                         </li>
                     );
@@ -79,14 +83,14 @@ class List extends Component {
                             onMouseEnter={ this.handleMouseEnter }
                             onMouseLeave={ this.handleMouseLeave }
                         >
-                                {title}
+                                <Link to={ path }>{title}</Link>
                         </li>
                     )
                 }
             }
         );
         return (
-            <ul id='listUl'>
+            <ul className='listUl'>
                 { listItems }
             </ul>
         );
@@ -122,10 +126,8 @@ class SedList extends Component {
         let key = this.props.id;
         const lines = lists.map((item) => {
             if (item.id === key) {
-                console.log('id', this.props.id);
                 const sedLists = item.item.map((item) => 
                     {
-                        console.log('list-----', item);
                         return (
                             <li 
                                 className='idItem'

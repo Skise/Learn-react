@@ -17,9 +17,9 @@ class ImgShow extends Component {
         var _n = this.state.nowLocal + n;
         //防止意外情况，_n表示轮播的下一项
         if (_n < 0) {
-            _n = _n + this.props.items.length;
+            _n = this.props.items.length - 1;
         } else if (_n >= this.props.items.length) {
-            _n = _n-this.props.items.length;
+            _n = 0;
         }
         this.setState({
             nowLocal: _n

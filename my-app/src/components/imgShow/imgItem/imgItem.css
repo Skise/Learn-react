@@ -7,3 +7,6 @@
     /* height: auto; */
     width: 100%;
 }
+.imgItems:last-child {
+    transition: none;
+}

@@ -30,11 +30,11 @@ export default class Header extends Component {
             }
         ];
         return (
-            <div id='headers'>
+            <header>
                 <div className='logo'>实验产品</div>
                 <SearchBox />
                 <List navList={ navList }/>
-            </div>
+            </header>
         );
     }
 }

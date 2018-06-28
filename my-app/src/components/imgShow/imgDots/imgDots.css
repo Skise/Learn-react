@@ -20,6 +20,6 @@
     bottom: 0;
 }
 
-.slider-dot-selected {
-    background: #ccc;
+.img_dot_select {
+    background: rgb(204, 204, 204);
 }
