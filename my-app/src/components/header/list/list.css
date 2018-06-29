@@ -15,12 +15,13 @@ ul {
 .nav-list {
     display: inline-block;
 }
-.nav-list:hover {
+a:hover {
     color: aquamarine;
 }
 .listed {
-    color: red;
+    /* color: red !important; */
     display: inline-block;
+    background-color: #cdcdcd;
 }
 
 .idItem {
@@ -44,4 +45,9 @@ ul {
     padding: 0;
     border-radius: 5px;
     margin: 14px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
 }

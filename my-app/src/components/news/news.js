@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-class Food extends Component {
+class News extends Component {
     constructor() {
         super();
     }
 
     render() {
         return (
-            <div>food</div>
+            <div>news</div>
         );
     }
 }
 
-export default Food;
+export default News;

@@ -10,7 +10,7 @@ class RouterMap extends Component {
     render() {
         return (
             <Switch>
-                <Route path="/" component={App} />
+                <Route exact path="/" component={App} />
                 <Route path="/food" component={Food} />
                 <Route path="/news" component={News} />
                 <Route path="/home" component={Home} />
